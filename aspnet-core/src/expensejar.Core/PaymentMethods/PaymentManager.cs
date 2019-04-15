@@ -1,30 +1,36 @@
-﻿using System;
+﻿using Abp.Domain.Repositories;
+using Abp.Runtime.Session;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace expensejar.PaymentMethods
 {
-    class PaymentManager : IPaymentManager
+    public class PaymentManager : IPaymentManager
     {
-        public Task CreateAsync(PaymentMethod paymentMethod)
+        private readonly IRepository<PaymentMethod, int> _paymentMethodRepository;
+        private readonly IAbpSession _abpSession;
+
+        public PaymentManager(IRepository<PaymentMethod, int> paymentMethodRepository, IAbpSession abpSession)
         {
-            throw new NotImplementedException();
+            _paymentMethodRepository = paymentMethodRepository;
+            _abpSession = abpSession;
         }
 
-        public Task DeleteAsync(int id)
+        public async Task CreateOrUpdateAsync(PaymentMethod paymentMethod)
         {
-            throw new NotImplementedException();
+            await _paymentMethodRepository.InsertOrUpdateAsync(paymentMethod);
         }
 
-        public Task<PaymentMethod> GetAsync(int id)
+        public async Task DeleteAsync(int id)
         {
-            throw new NotImplementedException();
+            await _paymentMethodRepository.DeleteAsync(id);
         }
 
-        public Task UpdateAsync(PaymentMethod paymentMethod)
+        public async Task<PaymentMethod> GetAsync(int id)
         {
-            throw new NotImplementedException();
+            await _paymentMethodRepository.GetAsync(id);
         }
     }
 }

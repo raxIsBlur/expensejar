@@ -1,60 +1,66 @@
-﻿using System;
+﻿using Abp.Domain.Repositories;
+using Abp.Runtime.Session;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace expensejar.Categories
 {
-    class CategoryManager : ICategoryManager
+    public class CategoryManager : ICategoryManager
     {
-        public Task CreateCategoryAsync(Category category)
+        private readonly IRepository<Category, int> _categoryRepository;
+        private readonly IRepository<SubCategory, int> _subCategoryRepository;
+        private readonly IAbpSession _abpSession;
+
+        public CategoryManager(
+            IRepository<Category, int> categoryRepository,
+            IRepository<SubCategory, int> subCategoryRepository,
+            IAbpSession abpSession)
         {
-            throw new NotImplementedException();
+            _categoryRepository = categoryRepository;
+            _subCategoryRepository = subCategoryRepository;
+            _abpSession = abpSession;
         }
 
-        public Task CreateSubCategoryAsync(SubCategory subCategory)
+        public async Task CreateOrUpdateCategoryAsync(Category category)
         {
-            throw new NotImplementedException();
+            await _categoryRepository.InsertOrUpdateAsync(category);
         }
 
-        public Task DeleteCategoryAsync(int id)
+        public async Task CreateOrUpdateSubCategoryAsync(SubCategory subCategory)
         {
-            throw new NotImplementedException();
+            await _subCategoryRepository.InsertOrUpdateAsync(subCategory);
         }
 
-        public Task DeleteSubCategoryAsync(int id)
+        public async Task DeleteCategoryAsync(int id)
         {
-            throw new NotImplementedException();
+            await _categoryRepository.DeleteAsync(id);
         }
 
-        public Task<Category> GetAllCategoryAsync()
+        public async Task DeleteSubCategoryAsync(int id)
         {
-            throw new NotImplementedException();
+            await _subCategoryRepository.DeleteAsync(id);
         }
 
-        public Task<Category> GetAllSubCategoryAsync(int? id)
+        public async Task<ICollection<Category>> GetAllCategoryAsync()
         {
-            throw new NotImplementedException();
+            return await _categoryRepository.GetAllListAsync();
         }
 
-        public Task<Category> GetCategoryAsync(int id)
+        public async Task<ICollection<SubCategory>> GetAllSubCategoryAsync(int? id)
         {
-            throw new NotImplementedException();
+            return await _subCategoryRepository.GetAllListAsync();
         }
 
-        public Task<SubCategory> GetSubCategoryAsync(int id)
+        public async Task<Category> GetCategoryAsync(int id)
         {
-            throw new NotImplementedException();
+            return await _categoryRepository.GetAsync(id);
         }
 
-        public Task UpdateAsync(Category category)
+        public async Task<SubCategory> GetSubCategoryAsync(int id)
         {
-            throw new NotImplementedException();
-        }
-
-        public Task UpdateAsync(SubCategory subCategory)
-        {
-            throw new NotImplementedException();
+            return await _subCategoryRepository.GetAsync(id);
         }
     }
 }

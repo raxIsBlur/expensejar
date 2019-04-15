@@ -1,55 +1,53 @@
-﻿using System;
+﻿using Abp.Domain.Repositories;
+using Abp.Runtime.Session;
+using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace expensejar.Budgets
 {
-    class BudgetManager : IBudgetManager
+    public class BudgetManager : IBudgetManager
     {
-        public Task CreateBudgetAsync(Budget budget)
+        private readonly IRepository<Budget, int> _budgetRepository;
+        private readonly IRepository<BudgetItem, int> _budgetItemRepository;
+        private readonly IAbpSession _abpSession;
+
+        public async Task CreateOrUpdateBudgetAsync(Budget budget)
         {
-            throw new NotImplementedException();
+            await _budgetRepository.InsertOrUpdateAsync(budget);
         }
 
-        public Task CreateBudgetItemAsync(BudgetItem budgetItem)
+        public async Task CreateOrUpdateBudgetItemAsync(BudgetItem budgetItem)
         {
-            throw new NotImplementedException();
+            await _budgetItemRepository.InsertOrUpdateAsync(budgetItem);
         }
 
-        public Task DeleteBudgetAsync(int id)
+        public async Task DeleteBudgetAsync(int id)
         {
-            throw new NotImplementedException();
+            await _budgetRepository.DeleteAsync(id);
         }
 
-        public Task DeleteBudgetItemAsync(int id)
+        public async Task DeleteBudgetItemAsync(int id)
         {
-            throw new NotImplementedException();
+            await _budgetItemRepository.DeleteAsync(id);
         }
 
-        public Task<BudgetItem> GetAllBudgetItemsAsync(int? id)
+        public async Task<ICollection<BudgetItem>> GetAllBudgetItemsAsync(int? id)
         {
-            throw new NotImplementedException();
+            return await _budgetItemRepository.GetAll().Where(x => x.CreatorUserId == _abpSession.UserId).ToListAsync();
         }
 
-        public Task<Budget> GetBudgetAsync(int id)
+        public async Task<Budget> GetBudgetAsync(int id)
         {
-            throw new NotImplementedException();
+            return await _budgetRepository.GetAsync(id);
         }
 
-        public Task<BudgetItem> GetBudgetItemAsync(int id)
+        public async Task<BudgetItem> GetBudgetItemAsync(int id)
         {
-            throw new NotImplementedException();
-        }
-
-        public Task UpdateBudgetAsync(Budget budget)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task UpdateBudgetItemAsync(BudgetItem budgetItem)
-        {
-            throw new NotImplementedException();
+            return await _budgetItemRepository.GetAsync(id);
         }
     }
 }

@@ -1,35 +1,45 @@
-﻿using System;
+﻿using Abp.Domain.Repositories;
+using Abp.Domain.Services;
+using Abp.Runtime.Session;
+using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace expensejar.Transactions
 {
-    class TransactionManager : ITransactionManager
+    public class TransactionManager : DomainService, ITransactionManager
     {
-        public Task CreateAsync(Transaction transaction)
+        private readonly IRepository<Transaction, int> _transactionRepository;
+        private readonly IAbpSession _abpSession;
+
+        public TransactionManager(
+            IRepository<Transaction, int> transactionRepository, IAbpSession abpSession)
         {
-            throw new NotImplementedException();
+            _transactionRepository = transactionRepository;
+            _abpSession = abpSession;
         }
 
-        public Task DeleteAsync(long id)
+        public async Task CreateOrUpdateAsync(Transaction transaction)
         {
-            throw new NotImplementedException();
+            await _transactionRepository.InsertOrUpdateAsync(transaction);
         }
 
-        public Task<ICollection<Transaction>> GetAllUserTransactionsAsync(int id)
+        public async Task DeleteAsync(int id)
         {
-            throw new NotImplementedException();
+            await _transactionRepository.DeleteAsync(id);
         }
 
-        public Task<Transaction> GetAsync(long id)
+        public async Task<ICollection<Transaction>> GetAllUserTransactionsAsync(int id)
         {
-            throw new NotImplementedException();
+            return await _transactionRepository.GetAll().Where(x => x.CreatorUserId == _abpSession.UserId).ToListAsync();
         }
 
-        public Task UpdateAsync(Transaction transaction)
+        public async Task<Transaction> GetAsync(int id)
         {
-            throw new NotImplementedException();
+            return await _transactionRepository.GetAsync(id);
         }
     }
 }

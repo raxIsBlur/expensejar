@@ -8,14 +8,12 @@ namespace expensejar.Transactions
 {
     public interface ITransactionManager : IDomainService
     {
-        Task<Transaction> GetAsync(long id);
+        Task<Transaction> GetAsync(int id);
 
         Task<ICollection<Transaction>> GetAllUserTransactionsAsync(int id);
 
-        Task CreateAsync(Transaction transaction);
+        Task CreateOrUpdateAsync(Transaction transaction);
 
-        Task UpdateAsync(Transaction transaction);
-
-        Task DeleteAsync(long id);
+        Task DeleteAsync(int id);
     }
 }

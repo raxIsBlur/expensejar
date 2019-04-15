@@ -10,9 +10,7 @@ namespace expensejar.PaymentMethods
     {
         Task<PaymentMethod> GetAsync(int id);
 
-        Task CreateAsync(PaymentMethod paymentMethod);
-
-        Task UpdateAsync(PaymentMethod paymentMethod);
+        Task CreateOrUpdateAsync(PaymentMethod paymentMethod);
 
         Task DeleteAsync(int id);
     }

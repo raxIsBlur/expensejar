@@ -12,15 +12,11 @@ namespace expensejar.Budgets
 
         Task<BudgetItem> GetBudgetItemAsync(int id);
 
-        Task<BudgetItem> GetAllBudgetItemsAsync(int? id);
+        Task<ICollection<BudgetItem>> GetAllBudgetItemsAsync(int? id);
 
-        Task CreateBudgetAsync(Budget budget);
+        Task CreateOrUpdateBudgetAsync(Budget budget);
 
-        Task CreateBudgetItemAsync(BudgetItem budgetItem);
-
-        Task UpdateBudgetAsync(Budget budget);
-
-        Task UpdateBudgetItemAsync(BudgetItem budgetItem);
+        Task CreateOrUpdateBudgetItemAsync(BudgetItem budgetItem);
 
         Task DeleteBudgetAsync(int id);
 

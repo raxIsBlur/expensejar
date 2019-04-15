@@ -10,19 +10,15 @@ namespace expensejar.Categories
     {
         Task<Category> GetCategoryAsync(int id);
 
-        Task<Category> GetAllCategoryAsync();
+        Task<ICollection<Category>> GetAllCategoryAsync();
 
         Task<SubCategory> GetSubCategoryAsync(int id);
 
-        Task<Category> GetAllSubCategoryAsync(int? id);
+        Task<ICollection<SubCategory>> GetAllSubCategoryAsync(int? id);
 
-        Task CreateCategoryAsync(Category category);
+        Task CreateOrUpdateCategoryAsync(Category category);
 
-        Task CreateSubCategoryAsync(SubCategory subCategory);
-
-        Task UpdateAsync(Category category);
-
-        Task UpdateAsync(SubCategory subCategory);
+        Task CreateOrUpdateSubCategoryAsync(SubCategory subCategory);
 
         Task DeleteCategoryAsync(int id);
 
