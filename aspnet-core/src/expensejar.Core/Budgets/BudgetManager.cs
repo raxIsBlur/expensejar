@@ -15,6 +15,13 @@ namespace expensejar.Budgets
         private readonly IRepository<BudgetItem, int> _budgetItemRepository;
         private readonly IAbpSession _abpSession;
 
+        public BudgetManager(IRepository<Budget, int> budgetRepository, IRepository<BudgetItem, int> budgetItemRepository, IAbpSession abpSession)
+        {
+            _budgetRepository = budgetRepository;
+            _budgetItemRepository = budgetItemRepository;
+            _abpSession = abpSession;
+        }
+
         public async Task CreateOrUpdateBudgetAsync(Budget budget)
         {
             await _budgetRepository.InsertOrUpdateAsync(budget);
@@ -33,6 +40,11 @@ namespace expensejar.Budgets
         public async Task DeleteBudgetItemAsync(int id)
         {
             await _budgetItemRepository.DeleteAsync(id);
+        }
+
+        public async Task<ICollection<Budget>> GetAllBudgetsAsync()
+        {
+            return await _budgetRepository.GetAll().Where(x => x.CreatorUserId == _abpSession.UserId).ToListAsync();
         }
 
         public async Task<ICollection<BudgetItem>> GetAllBudgetItemsAsync(int? id)

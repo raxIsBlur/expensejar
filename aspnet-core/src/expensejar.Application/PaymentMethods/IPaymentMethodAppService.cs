@@ -10,9 +10,9 @@ namespace expensejar.PaymentMethods
 {
     public interface IPaymentMethodAppService : IApplicationService
     {
-        Task<PaymentMethodDto> GetTransactionDetailAsync(EntityDto input);
+        Task<PaymentMethodDto> GetPaymentMethodDetailAsync(EntityDto input);
 
-        Task<ICollection<PaymentMethodDto>> GetAllPaymentMethods();
+        Task<ICollection<PaymentMethodDto>> GetAllPaymentMethodsAsync();
 
         Task CreateOrUpdateAsync(PaymentMethodDto input);
 

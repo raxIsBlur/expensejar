@@ -10,6 +10,8 @@ namespace expensejar.Budgets
     {
         Task<Budget> GetBudgetAsync(int id);
 
+        Task<ICollection<Budget>> GetAllBudgetsAsync();
+
         Task<BudgetItem> GetBudgetItemAsync(int id);
 
         Task<ICollection<BudgetItem>> GetAllBudgetItemsAsync(int? id);

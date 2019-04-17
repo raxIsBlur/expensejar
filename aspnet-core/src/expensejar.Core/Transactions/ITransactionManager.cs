@@ -10,7 +10,7 @@ namespace expensejar.Transactions
     {
         Task<Transaction> GetAsync(int id);
 
-        Task<ICollection<Transaction>> GetAllUserTransactionsAsync(int id);
+        Task<ICollection<Transaction>> GetAllUserTransactionsAsync();
 
         Task CreateOrUpdateAsync(Transaction transaction);
 

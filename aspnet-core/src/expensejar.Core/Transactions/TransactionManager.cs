@@ -32,7 +32,7 @@ namespace expensejar.Transactions
             await _transactionRepository.DeleteAsync(id);
         }
 
-        public async Task<ICollection<Transaction>> GetAllUserTransactionsAsync(int id)
+        public async Task<ICollection<Transaction>> GetAllUserTransactionsAsync()
         {
             return await _transactionRepository.GetAll().Where(x => x.CreatorUserId == _abpSession.UserId).ToListAsync();
         }

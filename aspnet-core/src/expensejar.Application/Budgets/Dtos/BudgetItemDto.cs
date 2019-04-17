@@ -6,26 +6,23 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 
-namespace expensejar.Transactions.Dtos
+namespace expensejar.Budgets.Dtos
 {
-    [AutoMapFrom(typeof(Transaction))]
-    [AutoMapTo(typeof(Transaction))]
-    public class TransactionDto : EntityDto
+    [AutoMapFrom(typeof(BudgetItem))]
+    [AutoMapTo(typeof(BudgetItem))]
+    public class BudgetItemDto : EntityDto
     {
-        [StringLength(EntityStringLengths.NameLength)]
-        public string Name { get; set; }
-
-        public double Amount { get; set; }
+        public int BudgetId { get; set; }
 
         public int CategoryId { get; set; }
 
         public int? SubCategoryId { get; set; }
 
-        public int? PaymentMethodId { get; set; }
-
-        public DateTime TransactionDate { get; set; }
+        public double? Amount { get; set; }
 
         [StringLength(EntityStringLengths.RemarksLength)]
         public string Remarks { get; set; }
+
+        public int? AlertThreshold { get; set; }
     }
 }

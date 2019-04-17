@@ -22,7 +22,5 @@ namespace expensejar.Categories
 
         [ForeignKey(nameof(CategoryId))]
         public Category Category { get; set; }
-
-        
     }
 }

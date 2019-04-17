@@ -1,16 +1,12 @@
-﻿using Abp.Application.Services.Dto;
-using Abp.AutoMapper;
-using expensejar.Constants;
+﻿using expensejar.Constants;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 
-namespace expensejar.PaymentMethods.Dtos
+namespace expensejar.Categories.Dtos
 {
-    [AutoMapFrom(typeof(PaymentMethod))]
-    [AutoMapTo(typeof(PaymentMethod))]
-    public class PaymentMethodDto : EntityDto
+    public class CategoryDto
     {
         [StringLength(EntityStringLengths.NameLength)]
         public string Name { get; set; }
@@ -18,6 +14,12 @@ namespace expensejar.PaymentMethods.Dtos
         [StringLength(EntityStringLengths.DescriptionLength)]
         public string Description { get; set; }
 
-        public PaymentMethodType Type { get; set; }
+        public TransactionType Type { get; set; }
+
+        public bool IsDefault { get; set; }
+
+        public int CategoryId { get; set; }
+
+        public ICollection<SubCategoryDto> SubCategories { get; set; }
     }
 }

@@ -13,8 +13,4 @@
   <ItemGroup>
     <ProjectReference Include="..\expensejar.Core\expensejar.Core.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Budgets\Dtos\" />
-    <Folder Include="Categories\Dtos\" />
-  </ItemGroup>
 </Project>

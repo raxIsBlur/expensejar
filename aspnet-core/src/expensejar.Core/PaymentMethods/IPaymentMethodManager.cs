@@ -6,9 +6,11 @@ using System.Threading.Tasks;
 
 namespace expensejar.PaymentMethods
 {
-    public interface IPaymentManager : IDomainService
+    public interface IPaymentMethodManager : IDomainService
     {
         Task<PaymentMethod> GetAsync(int id);
+
+        Task<ICollection<PaymentMethod>> GetAllAsync(int? id);
 
         Task CreateOrUpdateAsync(PaymentMethod paymentMethod);
 

@@ -1,14 +1,16 @@
-﻿using Abp.Domain.Entities.Auditing;
+﻿using Abp.Application.Services.Dto;
+using Abp.AutoMapper;
 using expensejar.Constants;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
-namespace expensejar.Budgets
+namespace expensejar.Budgets.Dtos
 {
-    public class Budget : AuditedEntity
+    [AutoMapFrom(typeof(BudgetItem))]
+    [AutoMapTo(typeof(BudgetItem))]
+    public class BudgetDto : EntityDto
     {
         [StringLength(EntityStringLengths.NameLength)]
         public string Name { get; set; }
@@ -20,7 +22,6 @@ namespace expensejar.Budgets
 
         public DateTime EndDate { get; set; }
 
-        [InverseProperty(nameof(BudgetItem))]
-        public ICollection<BudgetItem> BudgetItems { get; set; }
+        public ICollection<BudgetItemDto> BudgetItems { get; set; }
     }
 }
