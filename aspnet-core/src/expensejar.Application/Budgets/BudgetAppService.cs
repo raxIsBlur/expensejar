@@ -17,12 +17,12 @@ namespace expensejar.Budgets
             _budgetManager = budgetManager;
         }
 
-        public async Task CreateOrUpdateAsync(BudgetDto input)
+        public async Task CreateOrUpdateBudgetAsync(BudgetDto input)
         {
             await _budgetManager.CreateOrUpdateBudgetAsync(input.MapTo<Budget>());
         }
 
-        public async Task CreateOrUpdateAsync(BudgetItemDto input)
+        public async Task CreateOrUpdateBudgetItemAsync(BudgetItemDto input)
         {
             await _budgetManager.CreateOrUpdateBudgetItemAsync(input.MapTo<BudgetItem>());
         }

@@ -18,9 +18,9 @@ namespace expensejar.Budgets
 
         Task<ICollection<BudgetItemDto>> GetAllBudgetItems(GetBudgetItemInputDto input);
 
-        Task CreateOrUpdateAsync(BudgetDto input);
+        Task CreateOrUpdateBudgetAsync(BudgetDto input);
 
-        Task CreateOrUpdateAsync(BudgetItemDto input);
+        Task CreateOrUpdateBudgetItemAsync(BudgetItemDto input);
 
         Task DeleteBudgetAsync(EntityDto input);
 
