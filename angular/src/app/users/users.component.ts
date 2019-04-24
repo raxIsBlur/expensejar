@@ -61,11 +61,7 @@ export class UsersComponent extends PagedListingComponentBase<UserDto> {
 
         this._userService
             .getAll(request.keyword, request.isActive, request.skipCount, request.maxResultCount)
-            .pipe(
-                finalize(() => {
-                    finishedCallback();
-                })
-            )
+            .pipe(finalize(() => { finishedCallback(); }))
             .subscribe((result: PagedResultDtoOfUserDto) => {
                 this.users = result.items;
                 this.showPaging(result, pageNumber);

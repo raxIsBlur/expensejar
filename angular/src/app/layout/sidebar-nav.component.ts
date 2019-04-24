@@ -17,6 +17,10 @@ export class SideBarNavComponent extends AppComponentBase {
         new MenuItem(this.l('Roles'), 'Pages.Roles', 'local_offer', '/app/roles'),
         new MenuItem(this.l('About'), '', 'info', '/app/about'),
 
+        // expensejar navigation - handle the permissions later
+        new MenuItem(this.l('Budget'), '', '', '/app/budgets'),
+
+
         new MenuItem(this.l('MultiLevelMenu'), '', 'menu', '', [
             new MenuItem('ASP.NET Boilerplate', '', '', '', [
                 new MenuItem('Home', '', '', 'https://aspnetboilerplate.com/?ref=abptmpl'),
