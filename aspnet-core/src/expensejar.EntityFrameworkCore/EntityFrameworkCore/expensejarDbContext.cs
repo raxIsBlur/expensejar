@@ -14,7 +14,7 @@ namespace expensejar.EntityFrameworkCore
     {
         /* Define a DbSet for each entity of the application */
 
-        public virtual DbSet<BudgetItem> Budgets { get; set; }
+        public virtual DbSet<Budget> Budgets { get; set; }
         public virtual DbSet<BudgetItem> BudgetItems { get; set; }
         public virtual DbSet<Transaction> Transactions { get; set; }
         public virtual DbSet<PaymentMethod> PaymentMethods { get; set; }

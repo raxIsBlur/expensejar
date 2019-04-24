@@ -1,4 +1,5 @@
-﻿using expensejar.Constants;
+﻿using Abp.Application.Services.Dto;
+using expensejar.Constants;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -6,7 +7,7 @@ using System.Text;
 
 namespace expensejar.Categories.Dtos
 {
-    public class CategoryDto
+    public class CategoryDto : EntityDto 
     {
         [StringLength(EntityStringLengths.NameLength)]
         public string Name { get; set; }

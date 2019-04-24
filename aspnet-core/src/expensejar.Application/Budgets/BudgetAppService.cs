@@ -44,7 +44,15 @@ namespace expensejar.Budgets
 
         public async Task<ICollection<BudgetDto>> GetAllBudgets(GetBudgetInputDto input)
         {
-            return (await _budgetManager.GetAllBudgetsAsync()).MapTo<List<BudgetDto>>();
+            var budgets = await _budgetManager.GetAllBudgetsAsync();
+
+            var output = new List<BudgetDto>();
+
+            if (budgets != null && budgets.Count > 0) {
+                output = budgets.MapTo<List<BudgetDto>>();
+            }
+
+            return output;
         }
 
         public async Task<BudgetDto> GetBudgetDetailAsync(EntityDto input)

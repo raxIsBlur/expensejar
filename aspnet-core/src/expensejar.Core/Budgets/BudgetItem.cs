@@ -14,7 +14,7 @@ namespace expensejar.Budgets
         public int BudgetId { get; set; }
 
         [ForeignKey(nameof(BudgetId))]
-        public BudgetItem Budget { get; set; }
+        public Budget Budget { get; set; }
 
         public int CategoryId { get; set; }
 

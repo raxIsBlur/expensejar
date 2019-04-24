@@ -20,7 +20,7 @@ namespace expensejar.Budgets
 
         public DateTime EndDate { get; set; }
 
-        [InverseProperty(nameof(BudgetItem))]
+        [InverseProperty(nameof(Budget))]
         public ICollection<BudgetItem> BudgetItems { get; set; }
     }
 }

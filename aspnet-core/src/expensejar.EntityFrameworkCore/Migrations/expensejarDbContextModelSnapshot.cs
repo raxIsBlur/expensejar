@@ -1239,7 +1239,7 @@ namespace expensejar.Migrations
                     b.ToTable("PaymentMethods");
                 });
 
-            modelBuilder.Entity("expensejar.Transactions.TransactionEJ", b =>
+            modelBuilder.Entity("expensejar.Transactions.Transaction", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -1480,7 +1480,7 @@ namespace expensejar.Migrations
                         .HasForeignKey("LastModifierUserId");
                 });
 
-            modelBuilder.Entity("expensejar.Transactions.TransactionEJ", b =>
+            modelBuilder.Entity("expensejar.Transactions.Transaction", b =>
                 {
                     b.HasOne("expensejar.Categories.Category", "Category")
                         .WithMany()

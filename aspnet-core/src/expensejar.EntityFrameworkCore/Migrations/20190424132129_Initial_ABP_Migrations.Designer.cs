@@ -10,7 +10,7 @@ using expensejar.EntityFrameworkCore;
 namespace expensejar.Migrations
 {
     [DbContext(typeof(expensejarDbContext))]
-    [Migration("20190414084954_Initial_ABP_Migrations")]
+    [Migration("20190424132129_Initial_ABP_Migrations")]
     partial class Initial_ABP_Migrations
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

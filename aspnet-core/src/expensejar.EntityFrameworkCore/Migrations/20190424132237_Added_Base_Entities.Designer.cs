@@ -10,7 +10,7 @@ using expensejar.EntityFrameworkCore;
 namespace expensejar.Migrations
 {
     [DbContext(typeof(expensejarDbContext))]
-    [Migration("20190414130316_Added_Base_Entities")]
+    [Migration("20190424132237_Added_Base_Entities")]
     partial class Added_Base_Entities
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -1241,7 +1241,7 @@ namespace expensejar.Migrations
                     b.ToTable("PaymentMethods");
                 });
 
-            modelBuilder.Entity("expensejar.Transactions.TransactionEJ", b =>
+            modelBuilder.Entity("expensejar.Transactions.Transaction", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -1482,7 +1482,7 @@ namespace expensejar.Migrations
                         .HasForeignKey("LastModifierUserId");
                 });
 
-            modelBuilder.Entity("expensejar.Transactions.TransactionEJ", b =>
+            modelBuilder.Entity("expensejar.Transactions.Transaction", b =>
                 {
                     b.HasOne("expensejar.Categories.Category", "Category")
                         .WithMany()
